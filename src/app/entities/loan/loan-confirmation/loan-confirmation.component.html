@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Confirmar Empréstimo</h2>
+<mat-dialog-content>
+  <div class="confirmation-content">
+    <p>Por favor, confirme os detalhes do seu empréstimo:</p>
+
+    <div class="loan-details">
+      <div class="detail-item">
+        <span class="label">Valor das Parcelas:</span>
+        <span class="value">{{ data.valorParcelas | currency:'BRL' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Número de Parcelas:</span>
+        <span class="value">{{ data.numeroParcelas }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Valor Total com Juros:</span>
+        <span class="value">{{ data.valorTotal | currency:'BRL' }}</span>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onConfirm()">
+    Confirmar Empréstimo
+  </button>
+</mat-dialog-actions>

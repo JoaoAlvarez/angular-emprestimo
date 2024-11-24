@@ -1,0 +1,53 @@
+.success-card {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+.success-icon {
+  color: #4CAF50;
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  margin-right: 10px;
+}
+
+.loan-details {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.detail-item.total {
+  border-bottom: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.label {
+  color: #666;
+}
+
+.value {
+  font-weight: 500;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+button {
+  min-width: 200px;
+}

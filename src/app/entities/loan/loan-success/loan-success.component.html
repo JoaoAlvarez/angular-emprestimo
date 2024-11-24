@@ -1,0 +1,38 @@
+<div class="container mx-auto p-4 max-w-lg">
+  <mat-card class="success-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="success-icon">check_circle</mat-icon>
+        O empréstimo foi realizado com sucesso!
+      </mat-card-title>
+      <mat-card-subtitle>
+        Veja abaixo o que você contratou
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content *ngIf="simulacao">
+      <div class="loan-details">
+        <div class="detail-item">
+          <span class="label">Valor das Parcelas:</span>
+          <span class="value">{{ simulacao.valorParcelas | currency:'BRL' }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="label">Número de Parcelas:</span>
+          <span class="value">{{ simulacao.numeroParcelas }}</span>
+        </div>
+
+        <div class="detail-item total">
+          <span class="label">Valor Total com Juros:</span>
+          <span class="value">{{ simulacao.valorTotal | currency:'BRL' }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="voltarParaInicio()">
+        Fazer Nova Simulação
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

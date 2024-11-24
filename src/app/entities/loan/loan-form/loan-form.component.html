@@ -1,0 +1,96 @@
+<div class="main-container">
+  <!-- Seção de explicação - só aparece em desktop -->
+  <div class="explanation-section ">
+    <h2>Empréstimo Pessoal</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+    <h3>Vantagens</h3>
+    <ul>
+      <li>Taxas competitivas a partir de 5% ao mês</li>
+      <li>Aprovação rápida e sem burocracia</li>
+      <li>Parcelas que cabem no seu bolso</li>
+      <li>Prazo estendido para pagamento</li>
+    </ul>
+
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+
+  <!-- Seção do formulário -->
+  <div class="form-section ">
+    <mat-card class="loan-form-card form-container">
+      <mat-card-header>
+        <mat-card-title>Simulação de Empréstimo</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="loanForm" (ngSubmit)="simularEmprestimo()">
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome do Solicitante</mat-label>
+              <input matInput formControlName="nome" placeholder="Digite seu nome">
+              <mat-error *ngIf="loanForm.get('nome')?.errors?.required">
+                Nome é obrigatório
+              </mat-error>
+              <mat-error *ngIf="loanForm.get('nome')?.errors?.minlength">
+                Nome deve ter no mínimo 3 caracteres
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Valor Desejado</mat-label>
+              <input matInput type="number" formControlName="valor" placeholder="R$ 0,00">
+              <mat-error *ngIf="loanForm.get('valor')?.errors?.required">
+                Valor é obrigatório
+              </mat-error>
+              <mat-error *ngIf="loanForm.get('valor')?.errors?.min">
+                Valor mínimo é R$ 100,00
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Número de Parcelas</mat-label>
+              <input matInput type="number" formControlName="parcelas" placeholder="1-48">
+              <mat-error *ngIf="loanForm.get('parcelas')?.errors?.required">
+                Número de parcelas é obrigatório
+              </mat-error>
+              <mat-error *ngIf="loanForm.get('parcelas')?.errors?.min || loanForm.get('parcelas')?.errors?.max">
+                Número de parcelas deve ser entre 1 e 48
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!loanForm.valid || isLoading">
+              {{ isLoading ? 'Simulando...' : 'Simular Empréstimo' }}
+            </button>
+          </div>
+        </form>
+
+        <div *ngIf="simulacao" class="simulacao-result">
+          <h3>Resultado da Simulação</h3>
+          <div class="simulacao-info">
+            <p>
+              <strong>Valor das Parcelas:</strong>
+              {{ simulacao.valorParcelas | currency:'BRL' }}
+            </p>
+            <p>
+              <strong>Número de Parcelas:</strong>
+              {{ simulacao.numeroParcelas }}
+            </p>
+            <p>
+              <strong>Valor Total com Juros:</strong>
+              {{ simulacao.valorTotal | currency:'BRL' }}
+            </p>
+          </div>
+          <button mat-raised-button color="accent" (click)="confirmarEmprestimo()">
+            Confirmar Empréstimo
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
